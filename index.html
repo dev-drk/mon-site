@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pour Ma Toufa ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(#ffc0cb, #fff0f5);
+      font-family: 'Courier New', Courier, monospace;
+      overflow-x: hidden; /* éviter scroll horizontal sur mobile */
+    }
+
+    .letter {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 30px 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+      max-width: 90vw;
+      max-height: 80vh;
+      overflow-y: auto;
+      text-align: center;
+      animation: fadeIn 3s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    h1 {
+      color: #e91e63;
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.5;
+      white-space: pre-line; /* garder les retours à la ligne */
+      margin: 0;
+    }
+
+    .kiss-btn {
+      margin-top: 25px;
+      background-color: #e91e63;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      width: 100%;
+      max-width: 250px;
+    }
+
+    .kiss-btn:hover {
+      background-color: #c2185b;
+      transform: scale(1.05);
+    }
+
+    .petal,
+    .heart {
+      position: absolute;
+      opacity: 0.7;
+      animation: fall 6s linear infinite;
+      pointer-events: none;
+    }
+
+    .petal {
+      width: 15px;
+      height: 15px;
+      background: radial-gradient(circle at 7.5px 7.5px, #ff69b4, #e91e63);
+      border-radius: 50%;
+    }
+
+    .heart {
+      font-size: 16px;
+      color: #ff1493;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .extra-text {
+      margin-top: 20px;
+      font-size: 1.1rem;
+      color: #e91e63;
+      font-weight: bold;
+      transition: opacity 0.5s ease;
+      min-height: 1.2em;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 600px) {
+      .letter {
+        width: 90vw;
+        height: 90vh;
+        padding: 20px 15px;
+        max-width: none;
+        max-height: none;
+        overflow-y: auto; /* pour scroller si besoin */
+      }
+
+      h1 {
+        font-size: 1.4rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+
+      .kiss-btn {
+        max-width: 100%;
+        font-size: 0.9rem;
+        padding: 10px 15px;
+      }
+
+      .heart {
+        font-size: 14px;
+      }
+
+      .petal {
+        width: 12px;
+        height: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="letter">
+    <h1>Pour Toi, Mon Cœur 💖</h1>
+    <p>
+      Ma princesse adorée 👑,<br />
+      Tu es ma plus belle certitude 🌹,<br />
+      Mon présent, mon futur, ma quiétude 🌈.<br />
+      Chaque battement de mon cœur t’appartient ❤️,<br />
+      Chaque souffle répète ton nom sans fin 🌬️.<br /><br />
+
+      Je t’aime d’une force douce et infinie 💫,<br />
+      Un amour qui grandit à chaque nuit 🌙,<br />
+      Un serment que rien ne peut briser 🔒,<br />
+      Ni la distance, ni le temps, ni l’éloigné 🕊️.<br /><br />
+
+      Je suis à toi, entièrement, sans détour 💍,<br />
+      Aujourd’hui, demain, et chaque retour 🔁.<br /><br />
+
+      Alors respire, avance, réussis 🌟,<br />
+      Je t’attendrai sans peur, sans nuit 🌌.<br />
+      Car ton nom vit dans mon souffle 💖,<br />
+      Et ton amour coule dans mes veines 💞.
+    </p>
+
+    <button class="kiss-btn" onclick="showNextPhrase()">Clique ici Ne Kele Ka Tane</button>
+    <div class="extra-text" id="extraText"></div>
+  </div>
+
+  <script>
+    function createPetal() {
+      const petal = document.createElement("div");
+      petal.classList.add("petal");
+      petal.style.left = Math.random() * window.innerWidth + "px";
+      petal.style.animationDuration = (Math.random() * 5 + 5) + "s";
+      document.body.appendChild(petal);
+      setTimeout(() => petal.remove(), 10000);
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.textContent = Math.random() > 0.5 ? "❤️" : "💗";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.style.fontSize = (Math.random() * 15 + 15) + "px";
+      heart.style.animationDuration = (Math.random() * 5 + 6) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+
+    setInterval(createPetal, 300);
+    setInterval(createHeart, 500);
+
+    const phrases = [
+      "Tu es ma Princesse adorée 👑",
+      "Tu es ma P’tite Femme 💕",
+      "Tu es Mon Ange 😇",
+      "Tu es Ma Chérie ❤️",
+      "Tu es Ma Puce 🐞",
+      "Tu es Ma Maman Jr 🤱",
+      "Tu es la Femme de ma vie 💍",
+      "Tu es la future Mère de mes enfants 👶",
+      "Tu es Ma Reine 👸",
+    ];
+
+    let currentPhraseIndex = 0;
+
+    function showNextPhrase() {
+      const extraText = document.getElementById("extraText");
+      if (currentPhraseIndex < phrases.length) {
+        extraText.textContent = phrases[currentPhraseIndex];
+        currentPhraseIndex++;
+      } else {
+        extraText.textContent = "💖 Tu les as toutes découvertes, Ma Toufa 💖";
+      }
+    }
+  </script>
+</body>
+</html>
